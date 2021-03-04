@@ -1,0 +1,78 @@
+// Theme overrides
+// --------------------------------------------------
+// Copyright Reserved Revox - 2017
+// --------------------------------------------------
+
+// Import Vars
+@import "var";
+
+// START Theme Overwrite
+.page-sidebar .sidebar-header {
+  border-bottom: transparent;
+}
+
+.header {
+  border-bottom: transparent;
+	background-color: $color-contrast-lower;
+	.bubble, .profile-dropdown-toggle:after{
+		border-color: $color-contrast-lower;
+	}
+}
+.header.light {
+  &.bg-white {
+    background-color: #fff;
+  }
+}
+.secondary-sidebar .main-menu > li.active{
+	background-color: #fff;
+}
+
+.notification-toggle {
+  left: -368px;
+}
+.page-sidebar {
+  border: 1px solid #f2f2f2;
+}
+body {
+  &.mobile {
+    .page-sidebar .sidebar-menu .menu-items {
+      li {
+        &.active,
+        &.open {
+          & > a {
+            color: #000;
+          }
+          & > .icon-thumbnail {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+.jumbotron {
+  background-color: $color-contrast-lowest;
+}
+
+.breadcrumb > .breadcrumb-item.active {
+  color: #000;
+}
+
+.secondary-sidebar.light {
+  background-color: $color-contrast-lower;
+}
+
+.split-view .split-list .item {
+  background-color: $color-contrast-lower;
+}
+
+.split-view .list-view-group-container{
+	background: $color-contrast-lower;
+	border-right: 1px solid $color-border-a;
+}
+@media (max-width: 979px) {
+  .header {
+    background: #fff;
+  }
+}
+// END Theme Overwrite

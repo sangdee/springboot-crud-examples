@@ -1,0 +1,1056 @@
+/*------------------------------------------------------------------
+[6. Buttons]
+*/
+
+// Mixins
+// --------------------------------------------------
+
+// Creates contextual buttons
+@mixin button($background-color, $border-color) {
+  $text-color: text-contrast($background-color);
+  $border-color: transparentize($border-color, 0.5);
+  &,
+  &:focus {
+    color: $text-color;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-bottom: 1px solid rgba($color-contrast-higher, 0.22);
+  }
+  &.active,
+  &:not(:disabled):not(.disabled):active,
+  &.active:focus,
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled):active:hover,
+  .show .dropdown-toggle#{&} {
+    background-color: make-shade(
+      $background-color,
+      $mix-percentage-light,
+      $saturation-shift,
+      $hue-shift,
+      1
+    );
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-bottom: 1px solid rgba($color-contrast-higher, 0.22);
+    box-shadow: none;
+  }
+  &.hover:not(.active),
+  &:hover:not(.active),
+  .show .dropdown-toggle#{&} {
+    background-color: make-shade(
+      $background-color,
+      $mix-percentage-light,
+      $saturation-shift,
+      $hue-shift,
+      -1
+    );
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-bottom: 1px solid rgba($color-contrast-higher, 0.22);
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $background-color;
+      border: 1px solid $border-color;
+      border-bottom: 1px solid rgba($color-contrast-higher, 0.22);
+    }
+  }
+
+  .badge {
+    color: $background-color;
+    background-color: $text-color;
+  }
+}
+
+@mixin button-outline($button-color) {
+  $text-color: $button-color;
+  $background-color: $button-color;
+  &,
+  &:focus {
+    color: $text-color;
+    border: 1px solid $button-color;
+    background: transparent;
+  }
+  &.active,
+  &:not(:disabled):not(.disabled):active,
+  &.active:focus,
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled):active:hover,
+  .show .dropdown-toggle#{&} {
+    background-color: rgba($button-color, 0.4);
+    border: 1px solid $button-color;
+    color: $text-color;
+    box-shadow: none;
+  }
+  &.hover:not(.active),
+  &:hover:not(.active),
+  .show .dropdown-toggle#{&} {
+    background-color: rgba($button-color, 0.1);
+    border: 1px solid $button-color;
+    color: $text-color;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      border: 1px solid $button-color;
+      background: transparent;
+      color: rgba($text-color, 0.8);
+      cursor: not-allowed;
+    }
+  }
+}
+
+/*
+[Buttons Base Styles]
+*/
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $force-mac-font-family;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.006em;
+  margin-bottom: 0;
+  text-align: center;
+	cursor: pointer;
+	white-space: nowrap;
+  @include border-radius(3px);
+  background-image: none !important;
+  color: $color-contrast-high;
+  background-color: $color-contrast-lowest;
+  text-shadow: none;
+  box-shadow: none;
+  border: 1px solid opacify($color-border-a, 0.03);
+  border-bottom: 1px solid opacify($color-border-a, 0.1);
+  line-height: 14px;
+  min-height: 28px;
+  min-width: 28px;
+  position: relative;
+  transition: background 120ms ease-in 0s, box-shadow 120ms ease-in 0s,
+    opacity 0.12s cubic-bezier(0.4, 0, 0.6, 1) 0ms,
+    transform 0.12s cubic-bezier(0.4, 0, 0.6, 1) 0ms,
+    -webkit-transform 0.12s cubic-bezier(0.4, 0, 0.6, 1) !important;
+  padding: 0px 9px;
+  &.focus {
+    box-shadow: none;
+  }
+  &:hover:not(.active) {
+    background: $color-contrast-lower;
+    color: $color-contrast-high;
+  }
+  &.active {
+    background: #e9ebeb;
+    border: 1px solid opacify($color-border-a, 0.06);
+    border-bottom: 1px solid opacify($color-border-a, 0.15);
+    color: $color-contrast-high;
+  }
+  &:focus,
+  &:active:focus,
+  &.active:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 $focus-width $color-focus;
+  }
+  .caret {
+    @include margin-left(3px);
+    &.single {
+      @include margin-left(0px);
+    }
+  }
+  i {
+    display: inline-flex;
+    position: relative;
+    @include left( 0px );
+    top: 0px;
+    align-items: center;
+    justify-content: center;
+  }
+  .pg-icon {
+    font-size: 20px;
+  }
+  .material-icons {
+    font-size: 24px;
+  }
+  span {
+    flex: 1;
+  }
+}
+// Fix for chrome's button outline on focus
+button:focus {
+  outline: none !important;
+}
+/*
+Alternate buttons
+--------------------------------------------------
+*/
+
+.btn-primary {
+  @include button($color-primary, $color-primary-dark);
+}
+.btn-success {
+  @include button($color-success, $color-success-dark);
+}
+.btn-complete {
+  @include button($color-complete, $color-complete-dark);
+}
+.btn-info {
+  @include button($color-info, $color-info-dark);
+}
+.btn-warning {
+  @include button($color-warning, $color-warning-dark);
+}
+.btn-danger {
+  @include button($color-danger, $color-danger-dark);
+}
+
+.btn-default {
+  background: $color-contrast-lowest;
+  color: text-contrast($color-contrast-lowest);
+}
+.btn-default {
+  &:not(:disabled):not(.disabled):active:hover,
+  &.active,
+  &:active,
+  &.active:focus,
+  &:active:focus {
+    background: $color-contrast-low;
+    border: 1px solid opacify($color-border-a, 0.06);
+    border-bottom: 1px solid opacify($color-border-a, 0.15);
+    color: $color-contrast-high;
+  }
+  &.active {
+    background: $color-contrast-low;
+    animation-name: toggle;
+    animation-duration: 300ms;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    color: $color-contrast-higher;
+  }
+  &.hover:not(.active),
+  &:hover:not(.active) {
+    background: $color-contrast-lower;
+    color: $color-contrast-higher;
+  }
+}
+
+.btn-icon-link {
+  position: relative;
+  min-width: 24px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  line-height: 0;
+  &:before {
+    content: "";
+    display: block;
+    opacity: 0;
+    position: absolute;
+    transition: all cubic-bezier(0.4, 0, 0.2, 1) 240ms;
+    bottom: -2px;
+    @include left( -2px );
+    @include right( -2px );
+    top: -2px;
+    background: none;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transform: scale(0.89);
+  }
+  &:hover:not(.active) {
+    background: transparent;
+    &:before {
+      background-color: transparentize($color-border-a, 0.04);
+      opacity: 1;
+      transform: scale(1);
+    }
+    &:active,
+    &.active {
+      &:before {
+        transition: all cubic-bezier(0.4, 0, 0.2, 1) 44ms;
+        background-color: transparentize($color-contrast-medium, 0.74);
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+  &.active {
+    background: none;
+    &:before {
+      opacity: 1;
+      transform: scale(1);
+      background-color: transparentize($color-contrast-medium, 0.74);
+    }
+  }
+  &.invert {
+    &:hover:not(.active) {
+      color: transparentize($color-contrast-lowest, 0.28);
+      &:before {
+        background-color: transparentize($color-contrast-lowest, 0.88);
+      }
+      &:active {
+        color: $color-contrast-lowest;
+        &:before {
+          background-color: transparentize($color-contrast-lowest, 0.82);
+        }
+      }
+    }
+  }
+}
+
+/*
+Outline Buttons
+--------------------------------------------------
+*/
+.btn-outline-primary {
+  @include button-outline($color-primary);
+}
+.btn-outline-success {
+  @include button-outline($color-success);
+}
+.btn-outline-complete {
+  @include button-outline($color-complete);
+}
+.btn-outline-info {
+  @include button-outline($color-info);
+}
+.btn-outline-warning {
+  @include button-outline($color-warning);
+}
+.btn-outline-danger {
+  @include button-outline($color-danger);
+}
+
+@keyframes toggle {
+  0% {
+    background: $color-contrast-low;
+  }
+  50% {
+    background: darken($color-contrast-low, 20%);
+  }
+  100% {
+    background: $color-contrast-low;
+  }
+}
+
+// Link button
+.btn-link {
+  @include padding-left( 6px );
+  @include padding-right( 6px );
+  &,
+  &:focus {
+    color: $color-contrast-high;
+    background: transparent;
+    border: 0;
+    text-decoration: none;
+  }
+  &.active,
+  &:not(:disabled):not(.disabled):active,
+  &.active:focus,
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled):active:hover {
+    color: $color-contrast-high;
+    background: rgba(128, 128, 128, 0.33);
+    border: 0;
+  }
+  &.hover:not(.active),
+  &:hover:not(.active) {
+    color: $color-contrast-high;
+    background: rgba(128, 128, 128, 0.2);
+    border: 0;
+    text-decoration: none;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      color: $color-contrast-medium;
+      background: transparent;
+      border: 0;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+}
+
+//File Input Btn
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type="file"] {
+  position: absolute;
+  top: 0;
+  @include right(0);
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+
+/* hide focus style if not from keyboard navigation */
+.js-focus-visible .btn:focus:not(.focus-visible) {
+  box-shadow: none;
+}
+
+/*
+Button with icons
+--------------------------------------------------
+*/
+.btn-icon-left {
+  @include padding-left( 0px !important );
+  i {
+    margin: 0 3px;
+  }
+}
+.btn-icon-right {
+  @include padding-right( 0px !important );
+  i {
+    margin: 3px 0;
+  }
+}
+/*
+Button Groups
+--------------------------------------------------
+*/
+
+.btn-group
+.btn-group {
+  .btn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    i {
+      font-size: 20px;
+    }
+  }
+  &:not(.btn-group-vertical) {
+    .btn {
+      &:not(.dropdown-toggle):not(:last-child):not(.active):after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        top: 20%;
+        height: calc(100% - 40%);
+        bottom: 10px;
+        background: rgba(0, 0, 0, 0.2);
+        @include right( -1px );
+        z-index: 2;
+      }
+      &:not(.active):not(:first-child) {
+        @include border-left( 1px solid transparent );
+      }
+      &.active {
+        z-index: 2;
+      }
+    }
+  }
+  &.btn-group-vertical {
+    & > .btn:not(:first-child) {
+      @include margin-left( 0 );
+    }
+  }
+}
+
+/*
+Button with content aligned to column 
+--------------------------------------------------
+*/
+.btn-flex-column {
+  flex-direction: column;
+}
+
+/*
+Button Sizes
+--------------------------------------------------
+*/
+
+.btn-lg,
+.btn-group-lg > .btn {
+  padding: 0px $padding-lg-horizontal;
+  font-size: 14px;
+  line-height: 14px;
+  min-height: 35px;
+  min-width: 35px;
+  font-weight: 500;
+  letter-spacing: -0.011em;
+}
+.btn-lg.btn-link,
+.btn-group-lg > .btn.btn-link {
+  padding: 0px $padding-xs-horizontal;
+}
+.btn-lg.btn-icon-left {
+  i {
+    @include margin-left( 5px );
+    @include margin-right( 4px );
+  }
+}
+.btn-lg.btn-icon-right {
+  i {
+    @include margin-right( 5px );
+    @include margin-left( 4px );
+  }
+}
+.btn-sm,
+.btn-group-sm > .btn {
+  padding: 0 $padding-sm-horizontal;
+  min-height: 24px;
+  min-width: 24px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 12px;
+  letter-spacing: 0em;
+}
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 0 $padding-xs-horizontal;
+  font-size: 14px;
+  line-height: 12px;
+  min-width: 22px;
+  min-height: 22px;
+  letter-spacing: 0em;
+}
+.btn-cons {
+  @include margin-right(5px);
+  min-width: 120px;
+}
+
+/*
+Rounded buttons
+--------------------------------------------------
+*/
+.btn-rounded {
+  border-radius: 100px !important;
+  @include padding-left( 11px );
+  @include padding-right( 11px );
+  &.btn-lg {
+    @include padding-left( 14px );
+    @include padding-right( 14px );
+  }
+  &.btn-sm {
+    @include padding-left( 9px );
+    @include padding-right( 9px );
+  }
+  &.btn-xs {
+    @include padding-left( 8px );
+    @include padding-right( 8px );
+  }
+}
+
+/*
+Dropdown menus
+--------------------------------------------------
+*/
+.show {
+  .btn-group#{&} .dropdown-toggle,
+  & .dropdown-toggle,
+  &.dropdown-default .dropdown-toggle {
+    box-shadow: none;
+  }
+}
+/* Pages default dropdown */
+.dropdown-default {
+  display: inline-block;
+  &.toggle-only {
+    @include padding-left( 9px );
+    @include padding-right( 9px );
+    &:after {
+      position: initial;
+    }
+  }
+
+  &.show {
+    & > .btn {
+      &.dropdown-toggle {
+        border-color: transparent !important;
+        background: transparent !important;
+        z-index: $zIndex-navbar - 9 !important;
+        color: $color-contrast-high;
+      }
+    }
+    .dropdown-menu {
+      opacity: 1;
+      transform: scale(1, 1) !important;
+      z-index: $zIndex-dropdown;
+      pointer-events: all;
+      .dropdown-item {
+        visibility: visible;
+      }
+    }
+    &.dropup {
+      & > .btn-primary + .dropdown-menu:after,
+      & > .btn-success + .dropdown-menu:after,
+      & > .btn-complete + .dropdown-menu:after,
+      & > .btn-warning + .dropdown-menu:after,
+      & > .btn-danger + .dropdown-menu:after,
+      & > .btn-info + .dropdown-menu:after {
+        top: auto;
+        bottom: 0;
+      }
+    }
+    & > .btn-primary + .dropdown-menu:after,
+    & > .btn-success + .dropdown-menu:after,
+    & > .btn-complete + .dropdown-menu:after,
+    & > .btn-warning + .dropdown-menu:after,
+    & > .btn-danger + .dropdown-menu:after,
+    & > .btn-info + .dropdown-menu:after {
+      top: 0;
+      height: 42px;
+    }
+    & > .btn-primary + .dropdown-menu:after {
+      background-color: $color-primary;
+    }
+    & > .btn-success + .dropdown-menu:after {
+      background-color: $color-success;
+    }
+    & > .btn-complete + .dropdown-menu:after {
+      background-color: $color-complete;
+    }
+    & > .btn-warning + .dropdown-menu:after {
+      background-color: $color-warning;
+    }
+    & > .btn-danger + .dropdown-menu:after {
+      background-color: $color-danger;
+    }
+    & > .btn-info + .dropdown-menu:after {
+      background-color: $color-info;
+    }
+  }
+
+  &.dropup {
+    .btn.dropdown-toggle {
+      &.btn-lg {
+        & + .dropdown-menu {
+          margin-bottom: -47px;
+          padding-bottom: 49px;
+          &:after {
+            bottom: 49px;
+          }
+        }
+      }
+      &.btn-sm {
+        & + .dropdown-menu {
+          margin-bottom: -34px;
+          padding-bottom: 36px;
+          &:after {
+            bottom: 36px;
+          }
+        }
+      }
+      &.btn-xs {
+        & + .dropdown-menu {
+          margin-bottom: -29px;
+          padding-bottom: 31px;
+          &:after {
+            bottom: 31px;
+          }
+        }
+      }
+    }
+    .dropdown-menu {
+      margin-bottom: -35px;
+      @include padding(0, 3px, 44px, 0 !important);
+      transform-origin: center bottom 0;
+      top: auto !important;
+      bottom: 100% !important;
+      &:after {
+        bottom: 40px;
+        top: auto !important;
+      }
+    }
+  }
+  .btn.dropdown-toggle {
+    text-align: left;
+    @include padding-right($padding-base-horizontal + 10px);
+    &.btn-lg {
+      @include padding-right($padding-lg-horizontal + 14px);
+      &:after {
+        @include right(13px);
+      }
+      & + .dropdown-menu {
+        padding-top: 39px;
+        width: 100% !important;
+        &:after {
+          top: 39px;
+        }
+      }
+    }
+    &.btn-sm {
+      @include padding-right($padding-sm-horizontal + 10px);
+      &:after {
+        @include right(16px);
+      }
+      & + .dropdown-menu {
+        padding-top: 36px;
+        &:after {
+          top: 36px;
+        }
+      }
+    }
+    &.btn-xs {
+      @include padding-right($padding-xs-horizontal + 12px);
+      &:after {
+        @include right(8px);
+      }
+      & + .dropdown-menu {
+        padding-top: 31px;
+        &:after {
+          top: 31px;
+        }
+      }
+    }
+    &:after {
+      position: absolute;
+      @include right(10px);
+      top: 50%;
+      margin-top: -2px;
+    }
+  }
+  .btn-rounded {
+    @include padding-left(17px);
+    @include padding-right(17px);
+  }
+  .btn-rounded + .dropdown-menu {
+    border-radius: 17px;
+  }
+  .dropdown-menu {
+    margin-top: -4px;
+    width: 100%;
+    padding-top: 35px;
+    padding-bottom: 4px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    display: block;
+    opacity: 0;
+    transform: scale(1, 0) !important;
+    transform-origin: center top 0;
+    @include transition(all 170ms cubic-bezier(0.05, 0.74, 0.27, 0.99) 0s);
+    z-index: -1;
+    &:after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      @include left(0);
+      top: 35px;
+      background: $color-contrast-low;
+      width: 100%;
+    }
+    li, // BS-3
+			.dropdown-item {
+      visibility: hidden;
+    }
+  }
+}
+
+//BS 4.1
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
+.dropdown-menu {
+  position: absolute;
+  display: none;
+  float: left;
+  list-style: none;
+  text-shadow: none;
+  max-width: calc(100vw - 24px);
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+  border: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 3px;
+  font-size: 13px;
+  margin: 0;
+  background: $color-contrast-lowest;
+	min-width: initial;
+  z-index: $zIndex-dropdown !important;
+  .divider {
+    background-color: $color-contrast-low;
+    height: 1px;
+    margin: 3px 0;
+    border-bottom: 0px;
+  }
+  & > li, //BS-3
+    & > .dropdown-item {
+    line-height: 20px;
+    color: $color-contrast-high;
+    padding: 4px 8px 4px 16px;
+    border-radius: 3px;
+    display: block;
+    clear: both;
+    white-space: nowrap;
+    @include text-align(left);
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+    }
+
+    &.dropdown-header {
+      padding: 3px 20px;
+    }
+    &.active > a, // BS-3
+        &.active {
+      &,
+      &:hover,
+      &:focus {
+        color: $color-contrast-higher;
+        text-decoration: none;
+				background-color: $color-contrast-lower;
+				border-radius: 0;
+      }
+    }
+    &.disabled > a, // BS-3
+        &.disabled {
+      &,
+      &:hover,
+      &:focus {
+        color: lighten($color-contrast-high, 20%);
+      }
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        cursor: default;
+      }
+    }
+    & > a {
+      // BS-3
+      line-height: 35px;
+      color: $color-contrast-high;
+      padding: 0 20px;
+      border-radius: 3px;
+      display: block;
+      clear: both;
+      white-space: nowrap;
+      @include text-align(left);
+      &:hover,
+      &:focus {
+        color: $color-contrast-higher;
+        text-decoration: none;
+        background-color: transparent;
+        background-image: none;
+      }
+    }
+  }
+  & > a.dropdown-item {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-contrast-higher;
+      text-decoration: none;
+      background-color: $color-complete-lighter;
+    }
+  }
+  & > li {
+    // BS-3
+    padding: 0;
+  }
+  & > a {
+    // BS-3
+    line-height: 35px;
+    color: $color-contrast-high;
+    padding: 0 20px;
+    border-radius: 3px;
+    display: block;
+    clear: both;
+    white-space: nowrap;
+    @include text-align(left);
+    &:hover,
+    &:focus {
+      color: $color-contrast-higher;
+      text-decoration: none;
+      background-color: transparent;
+      background-image: none;
+    }
+  }
+  & > li {
+    // BS-3
+    padding: 0;
+  }
+}
+
+.dropdown-backdrop {
+  z-index: $zIndex-dropdownMask;
+}
+/*
+Animated buttons
+--------------------------------------------------
+*/
+
+.btn-animated {
+  overflow: hidden;
+  @include backface-visibility(hidden);
+  @include transform-style(preserve-3d);
+  & > span:first-child {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    @include backface-visibility(hidden);
+    @include transition(all 0.2s ease-in-out);
+    @include transform-style(preserve-3d);
+  }
+  & > .hidden-block {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+		line-height: 1.9;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+    @include transition(all 220ms cubic-bezier(0.4, 0, 0.6, 1) 0ms);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    @include transition(all 380ms cubic-bezier(0.4, 0, 0.6, 1) 0ms);
+  }
+  &.from-top {
+    & > .hidden-block {
+      @include left(0);
+      top: -100%;
+    }
+    &:hover,
+    &.show-icon {
+      & > .hidden-block {
+        top: 0;
+      }
+      & > span:first-child {
+        @include translateY(300%);
+      }
+    }
+  }
+  &.from-left {
+    & > .hidden-block {
+      @include left(-100%);
+      top: 0;
+    }
+    &:hover,
+    &.show-icon {
+      & > .hidden-block {
+        @include left(0);
+      }
+      & > span:first-child {
+        @include translateX(200%);
+      }
+    }
+  }
+}
+
+/*
+Tag buttons
+--------------------------------------------------
+*/
+
+.btn-tag {
+  background: transparent;
+  color: $color-primary-darker;
+  border-radius: 99px;
+  border: 1px solid $color-border-a;
+  &:hover {
+    border: 1px solid $color-border-a;
+  }
+  &:active {
+    background: $color-border-a;
+  }
+  &:before {
+    content: "#";
+    font-size: 12px;
+    display: inline-flex;
+    position: relative;
+    @include margin-right( 3px );
+    color: inherit;
+  }
+}
+
+.btn-chip {
+  border-radius: 99px;
+  background: $color-contrast-low;
+  border-color: transparent;
+  transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  &.active {
+    background: $color-contrast-low;
+    border-color: transparent;
+    @include padding-left( 4px );
+    i {
+      width: 20px;
+    }
+  }
+  &:hover:not(.active) {
+    background: darken($color-contrast-low, 10%);
+  }
+  i {
+    width: 0px;
+    overflow: hidden;
+    transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/*
+Misc buttons
+--------------------------------------------------
+*/
+.btn-icon {
+  padding: 0;
+}
+
+.btn-toolbar {
+  .btn-group {
+    @include margin-right( 14px );
+  }
+  .btn {
+    @include padding-left( 5px );
+    @include padding-right( 5px );
+  }
+}
+
+.pager .disabled {
+  > button,
+  > button:hover,
+  > button:focus,
+  > span {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.modal-content {
+  a.btn-primary:not([href]):not([tabindex]) {
+    color: #fff;
+    &:hover,
+    &:focus {
+      color: #fff;
+    }
+  }
+}

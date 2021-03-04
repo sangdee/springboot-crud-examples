@@ -1,0 +1,327 @@
+/*!
+* direction.scss
+*/
+$rtl: 'false';
+$side: both;
+
+@if $direction == 'rtl' {
+	$rtl: 'true';
+} @else {
+	$rtl: 'false';
+}
+
+@if $rtl == 'true' {
+	$left: 'right';
+} @else {
+	$left: 'left';
+}
+
+@if $rtl == 'true' {
+	$right: 'left';
+} @else {
+	$right: 'right';
+}
+// "border-color:" rule
+
+@mixin border-color($top, $right, $bottom, $left){
+	@if $direction != 'rtl' {
+		border-color: $top $right $bottom $left;
+	} @else {
+		border-color: $top $left $bottom $right;
+	}
+}
+
+// "border-left*:" rule
+
+@mixin border-left($left){
+	@if $direction != 'rtl' {
+		border-left: $left;
+	} @else {
+		border-right: $left;
+	}
+}
+
+@mixin border-left-color($left) {
+	@if $direction != 'rtl' {
+		border-left-color: $left;
+	} @else {
+		border-right-color: $left;
+	}
+}
+
+@mixin border-left-style($left) {
+	@if $direction != 'rtl' {
+		border-left-style: $left;
+	} @else {
+		border-right-style: $left;
+	}
+}
+
+@mixin border-left-width($left) {
+	@if $direction != 'rtl' {
+		border-left-width: $left;
+	} @else {
+		border-right-width: $left;
+	}
+}
+
+
+// "border-right*:" rule
+
+@mixin border-right($right) {
+	@if $direction != 'rtl' {
+		border-right: $right;
+	} @else {
+		border-left: $right;
+	}
+}
+
+
+@mixin border-right-color($right) {
+	@if $direction != 'rtl' {
+		border-right-color: $right;
+	} @else {
+		border-left-color: $right;
+	}
+}
+
+
+@mixin border-right-style($right) {
+	@if $direction != 'rtl' {
+		border-right-style: $right;
+	} @else {
+		border-left-style: $right;
+	}
+}
+
+@mixin border-right-width($right) {
+	@if $direction != 'rtl' {
+		border-right-width: $right;
+	} @else {
+		border-left-width: $right;
+	}
+}
+
+// "border-style:" rule
+
+@mixin border-style($top, $right, $bottom, $left) {
+	@if $direction != 'rtl' {
+		border-style: $top $right $bottom $left;
+	} @else {
+		border-style: $top $left $bottom $right;
+	}
+}
+
+// "border-width:" rule
+
+@mixin border-width($top, $right, $bottom, $left) {
+	@if $direction != 'rtl' {
+		border-width: $top $right $bottom $left;
+	} @else {
+		border-width: $top $left $bottom $right;
+	}	
+}
+
+// "border-radius:" rule
+
+@mixin border-top-left-radius($radius) {
+	@if $direction != 'rtl' {
+		border-top-left-radius: $radius;
+	} @else {
+		border-top-right-radius: $radius;
+	}
+}
+
+@mixin border-top-right-radius($radius) {
+	@if $direction != 'rtl' {
+		border-top-right-radius: $radius;
+	} @else {
+		border-top-left-radius: $radius;
+	}
+}
+
+@mixin border-bottom-left-radius($radius) {
+	@if $direction != 'rtl' {
+		border-bottom-left-radius: $radius;
+	} @else {
+		border-bottom-right-radius: $radius;
+	}
+}
+
+@mixin border-bottom-right-radius($radius) {
+	@if $direction != 'rtl' {
+		border-bottom-right-radius: $radius;
+	} @else {
+		border-bottom-left-radius: $radius;
+	}
+}
+
+// "clear:" rule
+
+@mixin clear($side: both) {
+	@if $direction != 'rtl' and not ($side == 'left') and not ($side == 'right') {
+		clear: $side;
+	} @else if ($direction != 'rtl') {
+		clear: left;
+	}
+	@else {
+		clear: right;
+	}
+}
+
+
+// "direction:" rule
+
+@mixin direction($dir) {
+	@if ($direction == 'rtl') {
+		@if ($dir == 'rtl') {
+			direction: 'ltr';	
+		}@else {
+			direction: 'rtl';
+		}
+	}
+	@else {
+		direction: $dir;
+	}
+}
+
+
+// "left:" rule
+
+@mixin left($left) {
+	@if $direction != 'rtl' {
+		left: $left;
+	} @else {
+		right: $left;
+	}
+}
+
+
+// "float:" rule
+
+@mixin float($float){
+	@if ($direction == 'rtl') {
+		@if ($side == 'left') {
+			float: 'right';	
+		}@else {
+			float: 'left';
+		}
+	}
+	@else {
+		float: $float;
+	}
+}
+
+// "margin:" rule
+
+@mixin margin($top, $right, $bottom, $left) {
+	@if $direction != 'rtl' {
+		margin: $top $right $bottom $left;
+	} @else {
+		margin: $top $left $bottom $right;
+	}	
+}
+
+
+// "margin-left:" rule
+
+@mixin margin-left($left) {
+	@if $direction != 'rtl' {
+		margin-left: $left;
+	} @else {
+		margin-right: $left;
+	}	
+}
+
+
+// "margin-right:" rule
+
+@mixin margin-right($right) {
+	@if $direction != 'rtl' {
+		margin-right: $right;
+	} @else {
+		margin-left: $right;
+	}	
+}
+
+
+// "padding:" rule
+
+@mixin padding($top, $right, $bottom, $left) {
+	@if $direction != 'rtl' {
+		padding: $top $right $bottom $left;
+	} @else {
+		padding: $top $left $bottom $right;
+	}	
+}
+
+
+// "padding-left:" rule
+
+@mixin padding-left($left) {
+	@if $direction != 'rtl' {
+		padding-left: $left;
+	} @else {
+		padding-right: $left;
+	}	
+}
+
+
+// "padding-right:" rule
+
+@mixin padding-right($right) {
+	@if $direction != 'rtl' {
+		padding-right: $right;
+	} @else {
+		padding-left: $right;
+	}	
+}
+
+
+
+// "text-align:" rule
+
+@mixin text-align($align) {
+	@if ($direction == 'rtl') {
+		@if ($align == 'left') {
+			text-align: 'right';	
+		}@else {
+			text-align: 'left';
+		}
+	}
+	@else {
+		text-align: $align;
+	}	
+}
+
+
+// "right:" rule
+
+@mixin right($right) {
+	@if $direction != 'rtl' {
+		right: $right;
+	} @else {
+		left: $right;
+	}
+	
+}
+
+// "translateX":rule
+
+@mixin translateX($x) {
+	@if $direction != 'rtl' {
+		transform: translateX($x);
+	} @else {
+		transform: translateX(-1*($x));
+	}
+}
+
+// "translate3d":rule
+
+@mixin translate3d($x, $y, $z) {
+	@if $direction != 'rtl' {
+		transform: translate3d($x, $y, $z);
+	} @else {
+		transform: translate3d(-1*($x), $y, $z);
+	}
+}

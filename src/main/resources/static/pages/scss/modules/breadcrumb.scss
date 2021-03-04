@@ -1,0 +1,64 @@
+/* Breadcrumbs
+------------------------------------
+*/
+.breadcrumb {
+  font-family: $secondary-font-family;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: transparent;
+  padding: 15px 0;
+  margin: 0;
+  border: none;
+  text-transform: uppercase;
+  &.breadcrumb-alt {
+    padding: 8px 0;
+    text-transform: none;
+    a {
+      letter-spacing: normal;
+      color: $color-contrast-medium;
+      font-size: 12px !important;
+    }
+    & > .breadcrumb-item.active {
+      letter-spacing: normal;
+      color: $color-contrast-high;
+      font-size: 12px !important;
+    }
+  }
+  a {
+    @include margin-left( 5px );
+    @include margin-right( 5px );
+    font-size: 10.5px !important;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: $color-contrast-high;
+  }
+  .breadcrumb-item {
+    display:flex;
+    @include padding-left(0px);
+  }
+  & > .breadcrumb-item {
+    & + .breadcrumb-item {
+      &:before {
+        color: $color-contrast-high;
+        font-family: "pages-icon";
+        content: "\e988";
+        font-size: 16px;
+      }
+    }
+    &.active {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      color: $color-primary-dark;
+      @include margin-left( 4px );
+      @include margin-right( 5px );
+      font-size: 10.5px !important;
+      letter-spacing: 0.06em;
+      &:before {
+        @include padding-right(8px);
+      }
+    }
+  }
+}

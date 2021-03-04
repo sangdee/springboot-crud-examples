@@ -1,0 +1,412 @@
+/*------------------------------------------------------------------
+[27. Widgets]
+*/
+.widget {
+  position: relative;
+  & > div {
+    position: relative;
+    z-index: 1;
+  }
+  &:after {
+    background-size: cover;
+    content: " ";
+    @include left( 0 );
+    @include right( 0 );
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.69;
+  }
+}
+.widget-1 {
+  &:after {
+    background-image: url("#{$assets-url}/img/dashboard/pages_hero.jpg");
+    background-size: cover;
+    content: " ";
+    @include left( 0 );
+    @include right( 0 );
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.69;
+  }
+  &:before {
+    background-image: url("#{$base-img-url}/linear_gradient.png");
+    background-repeat: repeat-x;
+    content: " ";
+    @include left( 0 );
+    @include right( 0 );
+    height: 325px;
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
+  }
+  & > .card-body {
+    // padding: 54px 37px 37px 37px;
+    .company:nth-child(2) > div {
+      display: table;
+      margin: 0 auto;
+      width: 127px;
+    }
+  }
+  & > .card-body > * {
+    z-index: 1;
+  }
+  & > .card-body > *:not(.pull-bottom) {
+    position: relative;
+  }
+  & > .card-body .pull-bottom {
+    padding: 0 49px 45px 42px;
+  }
+  span.label {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+.widget-2 {
+  &:after {
+    background-image: url("#{$assets-url}/img/social/person-cropped.jpg");
+  }
+}
+.widget-3 {
+  a {
+    text-decoration: none;
+  }
+  .pg-map {
+    font-size: 42px;
+  }
+  .widget-3-fav {
+    background: rgba(0, 0, 0, 0.08);
+    vertical-align: middle;
+    padding: 9px 10px;
+    display: flex;
+  }
+}
+
+.widget-4 {
+  .row-sm-height:nth-child(1) {
+    height: 30px;
+  }
+  .row-sm-height:nth-child(2) {
+    height: 30px;
+  }
+}
+.widget-4-chart {
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  @include right(0);
+  &.line-chart .tick text,
+  .line-chart .nvd3 .nv-axis .nv-axisMaxMin text {
+    transform: translate(-10px, -32px);
+  }
+  .nvtooltip .nv-pointer-events-none {
+    thead {
+      display: none;
+    }
+    tbody {
+      .nv-pointer-events-none .key {
+        display: none;
+      }
+    }
+  }
+}
+.widget-5-chart-container {
+  overflow: hidden;
+}
+.widget-5-chart {
+  height: auto;
+  width: auto;
+  bottom: 20px;
+  position: absolute;
+  @include right( 20px );
+  @include left( 20px );
+  top: 40px;
+}
+.widget-6 {
+  .label {
+    background: transparentize($color-contrast-high, 0.7);
+    color: $color-contrast-lowest;
+  }
+}
+.widget-7 {
+  .slide-back {
+    .row-sm-height:nth-child(1) {
+      height: 60%;
+    }
+    .row-sm-height:nth-child(2) {
+      height: 40%;
+    }
+  }
+}
+.widget-7-chart {
+  top: 0;
+  @include left( 0 );
+  @include right( 0 );
+  bottom: 0;
+  position: absolute;
+  &.line-chart[data-points="true"]
+    .nvd3.nv-line
+    .nvd3.nv-scatter
+    .nv-groups
+    .nv-point {
+    stroke-opacity: 1;
+  }
+  .nvd3 circle.nv-point:nth-child(4) {
+    fill: $color-success !important;
+    stroke: $color-white !important;
+    stroke-width: 2px !important;
+  }
+}
+.widget-8 {
+  height: 145px;
+  .row-xs-height:first-child {
+    height: 41px;
+  }
+}
+.widget-8-chart {
+  height: 100px;
+  width: 50%;
+  bottom: 0;
+  position: absolute;
+  @include right( 0 );
+  .line-chart[data-points="true"]
+    .nvd3.nv-line
+    .nvd3.nv-scatter
+    .nv-groups
+    .nv-point {
+    stroke-opacity: 0.3;
+  }
+  .line-chart .nvd3 .nv-groups path.nv-line {
+    stroke-opacity: 0.15;
+  }
+  .nvtooltip {
+    display: none;
+  }
+}
+
+.widget-9 {
+  height: 145px;
+  .row-xs-height:first-child {
+    height: 26px;
+  }
+  .progress {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+.widget-10 {
+  height: 145px;
+}
+.widget-11 {
+  sup {
+    @include margin-right(-4px);
+  }
+  .widget-11-table {
+    height: 100%;
+    tr td:first-child {
+      width: 40%;
+    }
+  }
+}
+.widget-11-2 {
+  sup {
+    @include margin-right(-4px);
+  }
+  .widget-11-2-table {
+    height: 273px;
+  }
+}
+
+.widget-11-3 {
+  .widget-11-3-table {
+    height: 384px;
+  }
+}
+
+.widget-12 {
+  .list-inline {
+    a {
+      padding: 3px 4px;
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+    .active a {
+      opacity: 1;
+    }
+  }
+  .nvd3-line svg {
+    height: 322px;
+  }
+  .widget-12-search {
+    margin-top: -3px;
+	}
+  @media (max-width: 992px) {
+		flex: none;
+		.widget-12-footer{
+			position: relative !important;
+		}
+  }
+}
+
+.share-other{
+	@media (max-width: 992px) {
+		.card-content{
+			height: 250px;
+			min-height: 250px;
+		}
+  }
+}
+
+.widget-14 {
+  .row-xs-height:nth-child(1) {
+    height: 30px;
+  }
+  .row-xs-height:nth-child(2) {
+    height: 120px;
+  }
+  .row-xs-height:nth-child(3) {
+    height: 297px;
+  }
+}
+.widget-14-chart_y_axis {
+  position: absolute;
+  top: 0;
+  background: rgba(255, 255, 255, 0.8);
+  bottom: 0;
+  width: 35px;
+  @include left(0);
+  z-index: 2;
+  .rickshaw_graph .y_ticks path,
+  .rickshaw_graph .x_ticks_d3 path {
+    fill: none;
+    stroke: none;
+  }
+  .rickshaw_graph .y_ticks text,
+  .rickshaw_graph .x_ticks_d3 text {
+    opacity: 0.35;
+    font-family: $secondary-font-family;
+    font-size: 11px;
+  }
+  .y_ticks.plain g:first-child {
+    opacity: 0 !important;
+  }
+}
+.widget-14-chart-legend .ui-sortable li {
+  @include padding-right(0);
+  .action {
+    display: none;
+  }
+  &:last-child {
+    margin-top: 7px;
+  }
+}
+
+.widget-15 {
+  #widget-15-tab-1 > div {
+    height: 170px;
+  }
+}
+.widget-15-2 {
+  #widget-15-2-tab-1 .full-width {
+    height: 180px;
+  }
+}
+.widget-16-header .pull-left:last-child {
+  width: 69%;
+}
+.widget-16-chart {
+  height: 138px;
+  &.line-chart[data-stroke-width="2"]
+    .nvd3.nv-line
+    .nvd3.nv-scatter
+    .nv-groups
+    .nv-point {
+    stroke-width: 2px;
+  }
+}
+
+.widget-17 {
+  height: 467px;
+  .weather-info {
+    .row {
+      margin-bottom: 12px;
+    }
+  }
+}
+.widget-18-post {
+  height: 342px;
+  background: url("#{$assets-url}/img/social/quote.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+.widget-19-post {
+  height: 220px;
+  background: #00a79a;
+  img {
+    top: 50%;
+    margin-top: -70px;
+  }
+}
+.btn-circle-arrow {
+  border: 1px solid #fff;
+  border-radius: 100px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  @include margin-right(4px);
+  i {
+    font-size: 20px;
+    position: absolute;
+    @include left(0px);
+    top: 0px;
+    @include margin-left(-1px);
+    margin-top: -1px;
+  }
+}
+
+.live-tile {
+  color: inherit;
+}
+/*** Large screens ***/
+@media only screen and (min-width: 1824px) {
+  // Dashboard
+  .ar-3-2:before {
+    padding-top: calc(55% - 5px) !important;
+  }
+  .ar-2-3:before {
+    padding-top: calc(135% - 5px) !important;
+  }
+}
+@media (max-width: 991px) {
+  .card {
+    height: auto !important;
+  }
+  .widget-8,
+  .widget-9,
+  .widget-10 {
+    height: 180px !important;
+  }
+}
+@media (max-width: 480px) {
+  .widget-1-wrapper {
+    height: 340px;
+  }
+}
+
+@media (max-width: 420px) {
+  .widgets-container {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 610px) {
+  .widget-item,
+  .widgets-container {
+    width: 100% !important;
+  }
+}

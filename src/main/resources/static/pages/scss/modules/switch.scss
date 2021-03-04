@@ -1,0 +1,200 @@
+/*------------------------------------------------------------------
+Switch
+*/
+$switch-duration: 250ms;
+$switch-curve: cubic-bezier(.4,0,.2,1);
+
+.form-check.switch{
+	input[type="checkbox"]{
+		& + label{
+			@include padding-left(34px);
+			&:before{
+				cursor: pointer;
+				width: 26px;
+				height: 18px;
+				top: 2px;
+				background-image: -webkit-linear-gradient(to right, $color-primary 0%, $color-primary-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				background-image: -moz-linear-gradient(to right, $color-primary 0%, $color-primary-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				background-image: linear-gradient(to right, $color-primary 0%, $color-primary-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				background-size: 300%;
+				background-position: right;
+				border-radius: 50px;
+				border: none;
+				box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.12);
+				transition: background ($switch-duration + ($switch-duration * 0.24)), box-shadow $switch-duration;
+				transition-timing-function: $switch-curve;
+			}
+			&:after{
+				transform: translateX(0%);
+				background: #fff;
+				top: 4px;
+				@include left(2px);
+				width: 14px;
+				height: 14px;
+				border-radius: 9px;
+				box-shadow: 1px 0px 1px 0.5px rgba(0,0,0,0.12), 2px 4px 6px rgba(0,0,0,0.2);
+				transition: transform, box-shadow;
+				transition-duration: $switch-duration;
+				transition-timing-function: $switch-curve;
+			}
+		}
+		&:checked{
+			& + label{
+				&:before{
+					background-position: left;
+					box-shadow: inset 0px 0px 0px 1px rgba(0,0, 0,0.12);
+				}
+				&:after{
+					transform: translateX(calc(100% - 6px));
+					box-shadow: 1px 1px 0px rgba(0,0,0,0.08), -3px 3px 6px rgba(0,0,0,0.3);
+				}
+			}
+		}
+		&:focus {
+			& + label {
+				  &:before{
+					outline: none !important;
+					box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.12) ,0 0 0 $focus-width $color-focus;
+				}
+			}
+		}
+		&[disabled]:active{
+			& + label {
+			  	&:after {
+					  transform: scaleX(1.1);
+					  transform-origin: center left;
+					  transition: transform step-start;
+			  }
+			}
+		}
+		&:checked{
+			&[disabled]:active{
+				& + label {
+					  &:after{
+						transform: translateX(calc(100% - 6px)) scaleX(1.1);
+						transform-origin: center right;
+				  }
+				}
+			}
+		}
+		&:hover{ 
+			&:active{
+			& + label {
+				&:before{
+				  background-color:transparent;
+			 	}	
+			  }
+			}
+		}
+	}
+	&.right{
+		input[type="checkbox"]{
+			& + label{
+				@include padding-left(0px);
+				@include padding-right(36px);
+				&:before{
+					@include right(0px);
+					@include left(auto);
+				}
+				&:after{
+					@include right(10px);
+					@include left(auto);
+				}
+			}
+		}
+	}
+	&.switch-lg{
+		input[type="checkbox"]{
+			& + label{
+				@include padding-left(42px);
+				&:before{
+					width: 34px;
+					height: 22px;
+					top: 0px;
+				}
+				&:after{
+					width: 18px;
+					height: 18px;
+					top: 2px;
+				}
+			}
+		}
+		&.right{
+			input[type="checkbox"]{
+				& + label{
+					@include padding-left(0px);
+					@include padding-right(44px);
+					&:after{
+						@include right(14px);
+					}
+				}
+			}
+		}
+	}
+	&.success{
+		input[type="checkbox"]{
+			& + label{
+				&:before{
+					background-image: linear-gradient(to right, $color-success 0%, $color-success-light  44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				}
+			}
+		}
+	}
+	&.complete{
+		input[type="checkbox"]{
+			& + label{
+				&:before{
+					background-image: linear-gradient(to right, $color-complete 0%, $color-complete-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				}
+			}
+		}
+	}
+	&.warning{
+		input[type="checkbox"]{
+			& + label{
+				&:before{
+					background-image: linear-gradient(to right, $color-warning 0%, $color-warning-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				}	
+			}
+		}
+	}
+	&.danger{
+		input[type="checkbox"]{
+			& + label{
+				&:before{
+					background-image: linear-gradient(to right, $color-danger 0%, $color-danger-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				}
+			}
+		}
+	}
+	&.info{
+		input[type="checkbox"]{
+			& + label{
+				&:before{
+					background-image: linear-gradient(to right, $color-info 0%, $color-info-light 44%, rgba(0,0,0,0.14) 62%, rgba(0,0,0,0.04) 97%);
+				}
+			}
+		}
+	}
+}
+
+/* hide focus style if not from keyboard navigation */
+.js-focus-visible .form-check.switch input[type="checkbox"]:focus:not(.focus-visible) + label:before {
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.12);
+}
+
+/* Accessibility focus for screen readers*/
+.form-check.switch{
+	input[type="checkbox"]{
+		top: 1px;
+    	width: 28px;
+    	height: 18px;
+	}
+}
+.form-check.switch.switch-lg{
+	input[type="checkbox"]{
+		top: 0px;
+		width: 34px;
+		height: 22px;
+	}
+}

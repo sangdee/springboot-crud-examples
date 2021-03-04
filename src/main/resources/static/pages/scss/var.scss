@@ -1,0 +1,195 @@
+// ===================================================
+// Pages Dashboard UI Framework  - DEFAULT THEME
+// Copyright Reserved Revox - 2020
+// ===================================================
+$pages-root-url: "../";
+$base-img-url: "../img";
+$assets-url: "../../assets";
+
+// ================ COLOR PALETTE ====================
+$color-primary: #7252D3;
+$color-complete: #0072EC;
+$color-success: #19AD79;
+$color-warning: #FFd945;
+$color-danger: #D83C31;
+$color-info: #3B4752;
+$color-menu: #2b303b;
+
+//Neutral color shades 
+$color-contrast-lowest: #fff; 
+$color-contrast-higher: #212121;
+
+//constant colors
+$color-white: #fff;
+$color-black: #000;
+
+// ============== COLOR CALIBRATOR ==================
+$saturation-shift: 18; //This value changes the saturation shift in shades
+$hue-shift: 8; //This value changes the hue of shades
+
+//Primary and Extended color scale
+$mix-percentage-lighter: 16;
+$mix-percentage-light: 90;
+$mix-percentage-darker: 60;
+$mix-percentage-dark: 81;
+
+//Neutral color contrast scale 
+$mix-percentage-contrast-lower: 5;   //Background
+$mix-percentage-contrast-low: 14;	  //Borders
+$mix-percentage-contrast-medium: 62; //Hinted text
+$mix-percentage-contrast-high: 81;	  //Body text
+
+// ================ COLOR FACTORY ====================
+//color shades and variable generation
+
+//primary-shade
+$color-primary-lighter: make-shade($color-primary, $mix-percentage-lighter, $saturation-shift, $hue-shift, -2);
+$color-primary-light: make-shade($color-primary, $mix-percentage-light, $saturation-shift, $hue-shift, -1);
+$color-primary-dark: make-shade($color-primary, $mix-percentage-dark, $saturation-shift, $hue-shift, 1);
+$color-primary-darker: make-shade($color-primary, $mix-percentage-darker, $saturation-shift, $hue-shift, 2);
+//success-shade
+$color-success-lighter: make-shade($color-success, $mix-percentage-lighter, $saturation-shift, $hue-shift, -2);
+$color-success-light: make-shade($color-success, $mix-percentage-light, $saturation-shift, $hue-shift, -1);
+$color-success-dark: make-shade($color-success, $mix-percentage-dark, $saturation-shift, $hue-shift, 1);
+$color-success-darker: make-shade($color-success, $mix-percentage-darker, $saturation-shift, $hue-shift, 2);
+//complete-shade
+$color-complete-lighter: make-shade($color-complete, $mix-percentage-lighter, $saturation-shift, $hue-shift, -2);
+$color-complete-light: make-shade($color-complete, $mix-percentage-light, $saturation-shift, $hue-shift, -1);
+$color-complete-dark: make-shade($color-complete, $mix-percentage-dark, $saturation-shift, $hue-shift, 1);
+$color-complete-darker: make-shade($color-complete, $mix-percentage-darker, $saturation-shift, $hue-shift, 2);
+//warning-shade
+$color-warning-lighter: make-shade($color-warning, $mix-percentage-lighter, $saturation-shift, $hue-shift, -2);
+$color-warning-light: make-shade($color-warning, $mix-percentage-light, $saturation-shift, $hue-shift, -1);
+$color-warning-dark: make-shade($color-warning, $mix-percentage-dark, $saturation-shift, $hue-shift, 1);
+$color-warning-darker: make-shade($color-warning, $mix-percentage-darker, $saturation-shift, $hue-shift, 2);
+//danger-shade
+$color-danger-lighter: make-shade($color-danger, $mix-percentage-lighter, $saturation-shift, $hue-shift, -2);
+$color-danger-light: make-shade($color-danger, $mix-percentage-light, $saturation-shift, $hue-shift, -1);
+$color-danger-dark: make-shade($color-danger, $mix-percentage-dark, $saturation-shift, $hue-shift, 1);
+$color-danger-darker: make-shade($color-danger, $mix-percentage-darker, $saturation-shift, $hue-shift, 2);
+//info-shade
+$color-info-lighter: make-shade($color-info, $mix-percentage-lighter, $saturation-shift, $hue-shift, -2);
+$color-info-light: make-shade($color-info, $mix-percentage-light, $saturation-shift, $hue-shift, -1);
+$color-info-dark: make-shade($color-info, $mix-percentage-dark, $saturation-shift, $hue-shift, 1);
+$color-info-darker: make-shade($color-info, $mix-percentage-darker, $saturation-shift, $hue-shift, 2);
+//Neutral color shades - #hex values
+$color-contrast-lower: mix($color-contrast-higher, $color-contrast-lowest, $mix-percentage-contrast-lower);
+$color-contrast-low: mix($color-contrast-higher, $color-contrast-lowest, $mix-percentage-contrast-low);
+$color-contrast-medium: mix($color-contrast-higher, $color-contrast-lowest, $mix-percentage-contrast-medium);
+$color-contrast-high: mix($color-contrast-higher, $color-contrast-lowest, $mix-percentage-contrast-high);
+//Neutral color shades - rgba values
+$color-contrast-lower-a: rgba($color-contrast-higher, $mix-percentage-contrast-lower/100);
+$color-contrast-low-a: rgba($color-contrast-higher, $mix-percentage-contrast-low/100);
+$color-contrast-medium-a: rgba($color-contrast-higher, $mix-percentage-contrast-medium/100);
+$color-contrast-high-a: rgba($color-contrast-higher, $mix-percentage-contrast-high/100);
+
+//Menu colors generation
+$color-menu-dark: mix($color-menu, #000, 77%);
+$color-menu-darker: mix($color-menu, #000, 90%);
+//Generating Menu font color
+$menu-mix-temp: mix($color-menu, #fff, 86%);
+$menu: blend-hardlight($menu-mix-temp,#fff);
+$color-menu-light: $menu;
+$color-menu-link-hover: #fff;
+
+//Secondary menu
+$_sidebar-background-color: blend-screen($color-menu, $color-menu);
+$sidebar-background-color: mix($_sidebar-background-color , #000, 48%);
+
+// ================ COLOR ASSIGN ====================
+$dashboard-background: $color-contrast-lower; //Dashboard background color
+$body-background: $color-contrast-lower ; // Default Background color
+$body-color: $color-contrast-high ; // Default font color
+
+$color-border-a: $color-contrast-low-a; //rgba value of $color-contrast-low for borders
+$color-hinted-a: $color-contrast-medium-a; //rgba value of $color-contrast-medium for hinted text
+$panel-border-color: transparent; //panel border color
+
+// ==================== FONTS ========================
+$base-font-family: "Inter UI", -apple-system, BlinkMacSystemFont,  "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell","Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif;
+$interface-font-family: "Inter UI", -apple-system, BlinkMacSystemFont,  "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell","Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif;
+$secondary-font-family: "Montserrat", -apple-system, BlinkMacSystemFont,  "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell","Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif;
+$force-mac-font-family: -apple-system, BlinkMacSystemFont,"Inter UI",  "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell","Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif;
+
+$body-font-family: $base-font-family ;
+$body-font-size: 13px ;
+
+// ================ PAGES MENU ====================
+//Menu Vertical (sidebar)
+$menu-bezier: .05, .74, .27, .99;
+$menu-icon-size: 40px;
+
+//secondary menu (sidebar)
+$secondary-sidebar-width : 250px;
+
+//menu horizontal
+$navbar-width: 45px;
+$menu-padding: 25px;
+$header-lg-height: 75px;
+$header-md-height: 51px;
+$header-sm-height: 50px;
+
+// ================ FORMS ====================
+$form-group-height: 54px ;
+
+// ================ LAYOUTS ====================
+$layout-header-height: 60px ;
+$layout-mobile-header-height: 48px ;
+$layout-mobile-logo-scale: 0.8 ;
+$layout-sidepanel-width-collapsed : 70px ;
+$layout-sidepanel-width: 280px ;
+$layout-sidepanel-pin-width: 250px ;
+$layout-right-quickview-width: 285px ;
+$layout-user-profile-margin: 25px ;
+$layout-container-fixed-lg: 1700px ;
+$layout-gutter-sm: 5px ;
+
+// Panels
+$panel-padding: 20px ;
+$panel-heading-padding: 16px 16px 7px $panel-padding ;
+$panel-heading-min-height: 48px ;
+$panel-condensed-heading-padding: 9px 13px 0 13px ;
+$panel-condensed-body-padding: 13px ;
+$panel-border-size: 0px;
+$panel-condensed-heading-min-height: 48px ;
+
+// ================ MISC ====================
+//padding scale
+$padding-base-horizontal: 17px;
+$padding-lg-horizontal: 12px;
+$padding-sm-horizontal: 8px;
+$padding-xs-vertical: 5px;
+$padding-xs-horizontal: 5px;
+
+// z-index scale 
+$zIndex-1:   100;
+$zIndex-2:   200;
+$zIndex-3:   300;
+$zIndex-4:   400;
+$zIndex-5:   500;
+$zIndex-6:   600;
+$zIndex-7:   700;
+$zIndex-8:   800;
+$zIndex-9:   900;
+$zIndex-10: 1000;
+
+// z-index applications
+$zIndex-sidebar: $zIndex-10;
+$zIndex-tooltips: $zIndex-10;
+$zIndex-quickview: $zIndex-10;
+$zIndex-horizontal-menu-mobile: $zIndex-10;
+$zIndex-notifications: $zIndex-9;
+$zIndex-navbar: $zIndex-8;
+$zIndex-dropdown: $zIndex-7;
+$zIndex-dropdownMask: $zIndex-6;
+$zIndex-portlet: $zIndex-6;
+
+
+// ============ ACCESSIBILITY ================
+//element focus only when using tab
+$color-focus: #78c8fe; 
+$focus-width: 2px;
+
+//Legibility - auto detect font color for background 
+$f-color-light: $color-contrast-lowest; //font color for dark background
+$f-color-dark: $color-contrast-high; //font color for light background
