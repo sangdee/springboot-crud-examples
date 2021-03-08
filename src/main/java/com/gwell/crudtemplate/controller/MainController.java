@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
+ * Homepage Controller
+ *
  * @author : Sangji Lee
  * @see : https://github.com/sangdee
  * @since : 2021-03-04
@@ -12,9 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-    /**
-     * DashBoard Controller
-     */
     @GetMapping("/")
     public String index() {
         return "index";

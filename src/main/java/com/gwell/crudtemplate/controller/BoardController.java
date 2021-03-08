@@ -15,22 +15,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 /**
+ * Board Controller
+ *
  * @author : Sangji Lee
  * @see : https://github.com/sangdee
  * @since : 2021-03-05
  */
 
-/**
- *  Board Controller
- */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/manage/board")
 public class BoardController {
 
-    /**
-     * DI
-     */
     @NonNull
     private final BoardService boardService;
     @NonNull
@@ -39,10 +35,10 @@ public class BoardController {
     /**
      * Display paged posts in a list, Search for posts using filters
      *
-     * @param pageable
-     * @param model
-     * @param filter
-     * @return
+     * @param pageable pageable object
+     * @param model model object
+     * @param filter Boardfilter
+     * @return list view
      */
     @GetMapping("/list")
     public String list(Pageable pageable, Model model, BoardFilter filter) {
@@ -56,9 +52,9 @@ public class BoardController {
     /**
      * View a specific post by id
      *
-     * @param model
+     * @param model model object
      * @param id
-     * @return
+     * @return detail view
      */
     @GetMapping("/detail/{id}")
     public String read(Model model, @PathVariable(name = "id") Long id) {
@@ -73,7 +69,7 @@ public class BoardController {
      *
      * @param model
      * @param id
-     * @return
+     * @return edit view
      */
     @GetMapping({"/edit", "/edit/{id}"})
     public String edit(Model model, @PathVariable(name = "id", required = false) Long id) {

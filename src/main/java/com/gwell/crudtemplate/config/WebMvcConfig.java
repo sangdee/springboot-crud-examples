@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.dialect.springdata.SpringDataDialect;
 
 /**
+ * Class for basic servlet configuration
+ *
  * @author : Sangji Lee
  * @see : https://github.com/sangdee
  * @since : 2021-03-04
