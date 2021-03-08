@@ -1,7 +1,6 @@
-package com.gwell.fortunecoinweb.controller;
+package com.gwell.crudtemplate.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -13,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
+    /**
+     * DashBoard Controller
+     */
     @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("asdf","ff");
+    public String index() {
         return "index";
     }
 }

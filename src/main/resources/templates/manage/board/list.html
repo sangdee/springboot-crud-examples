@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:replace="fragments/head :: head"></th:block>
+</head>
+<body class="fixed-header dashboard menu-pin menu-behind">
+<th:block th:replace="fragments/menu :: left"></th:block>
+<div class="page-container">
+    <th:block th:replace="fragments/top-bar :: topbar"></th:block>
+    <div class="page-content-wrapper">
+        <div class="content sm-gutter">
+            <div class="container-fluid">
+                <div class="page-title align-items-center">
+                    <h4 class="mb-1 mt-2">Community</h4>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <form th:action="@{/manage/board/list}" th:object="${filter}">
+                            <div class="d-flex">
+                                <div class="flex-fill">
+                                    <label th:for="*{FTitle}">title</label>
+                                    <input class="form-control" th:field="*{FTitle}" type="text"/>
+                                </div>
+                                <div class="ml-1 d-flex flex-column justify-content-end">
+                                    <button class="btn btn-primary btn-lg" type="submit">search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-right">
+                            <a class="btn btn-primary btn-lg" th:href="@{/manage/board/edit}">Write</a>
+                        </div>
+                        Show <span sd:page-size-selector="javascript"></span> entries
+
+                        <table class="table table-striped dt-responsive nowrap" id="datatable-buttons">
+                            <thead style="text-align: center; font-size: large;" class="thead-center">
+                            <tr>
+                                <th>title</a></th>
+                                <th width="150">name</a></th>
+                                <th width="200">date</a></th>
+                            </tr>
+                            </thead>
+                            <tbody style="text-align: center" class="tbody-center">
+                            <tr th:each="i : ${boardPage}" th:with="dtf='yyyy-MM-dd HH:mm'">
+                                <td><a th:href="@{/manage/board/detail/{id}(id=${i.id})}"
+                                       th:text="${i.title}"></a></td>
+                                <td><a th:text="${i.name}"></a></td>
+                                <td><a th:text="${#temporals.format(i.createDate, dtf)}"></a></td>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="pt-3">
+                            <nav class="d-flex justify-content-center">
+                                <ul class="pagination" sd:pagination-split="7" sd:pagination="full">
+                                    <li class="disabled"><a aria-label="Previous" href="javascript:"><span
+                                            aria-hidden="true">&laquo;</span></a></li>
+                                    <li class="active"><a href="javascript:">1 <span
+                                            class="sr-only">(current)</span></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="text-right">
+                                <div sd:pagination-summary="">info</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:replace="fragments/footer ::footer"></th:block>
+    </div>
+</div>
+<th:block th:replace="fragments/common-script :: common-script"/>
+
+</body>
+</html>

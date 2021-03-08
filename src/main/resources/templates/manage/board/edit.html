@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head"></th:block>
+    <link th:href="@{/static/assets/libs/summernote/summernote-bs4.css}" rel="stylesheet">
+</head>
+<body class="fixed-header dashboard menu-pin menu-behind">
+<th:block th:replace="fragments/menu :: left"></th:block>
+<div class="page-container">
+    <th:block th:replace="fragments/top-bar :: topbar"></th:block>
+    <div class="page-content-wrapper">
+        <div class="content sm-gutter">
+            <div class="container-fluid">
+                <div class="page-title align-items-center">
+                    <h4 class="mb-1 mt-2">Community</h4>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <form id="boardForm" method="post" enctype="multipart/form-data"
+                              th:action="@{/manage/board/save}" th:object="${board}">
+                            <input type="hidden" name="id" th:value="*{id}"/>
+
+                            <div class="form-group row mb-3">
+                                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                    <label th:for="name">name<span class="text-danger">&nbsp;*</span></label>
+                                    <input class="form-control" th:field="*{name}" type="text">
+                                    <small class="text-danger" th:errors="*{name}"></small>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <label th:for="password">password<span class="text-danger">&nbsp;*</span></label>
+                                    <input class="form-control" th:field="*{password}" type="password">
+                                    <small class="text-danger" th:errors="*{password}"></small>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label th:for="title">title<span class="text-danger">&nbsp;*</span></label>
+                                <div class="input-group">
+                                    <input class="form-control" th:field="*{title}" type="text">
+                                </div>
+                                <small class="text-danger" th:errors="*{title}"></small>
+                            </div>
+                            <div class="form-group">
+                                <textarea th:field="*{contents}"></textarea>
+                            </div>
+                            <span th:errors="*{contents}" class="field-error text-danger"></span>
+                            <div class="form-group mb-0 row">
+                                <div class="col-12 text-right">
+                                    <a class="btn btn-info btn-lg"
+                                       th:href="@{/manage/board/list}">list</a>
+                                    <button class="btn btn-primary btn-lg" type="submit">save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/footer ::footer"></th:block>
+</div>
+</div>
+
+<th:block th:replace="fragments/common-script :: common-script"/>
+<script th:src="@{/static/assets/libs/summernote/summernote-bs4.min.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#contents').summernote({
+            height: 300,
+            tooltip: false,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                //['fontsize', ['fontsize']],
+                //['color', ['color']],
+                ['insert', ['picture', 'link', 'video', 'table']]
+            ],
+        });
+
+    });
+</script>
+</body>
+</html>

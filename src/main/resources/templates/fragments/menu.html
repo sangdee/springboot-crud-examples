@@ -3,75 +3,28 @@
 <body>
 <th:block th:fragment="left">
     <nav class="page-sidebar" data-pages="sidebar">
-        <!-- BEGIN SIDEBAR MENU HEADER-->
         <div class="sidebar-header">
-            <!--            <a class="navbar-brand mr-0 mr-md-2 logo" th:href="@{/}">-->
-            <!--        <span class="logo-lg">-->
-            <!--            <img alt="" height="30" th:src="@{/assets/img/coin.png}"/>-->
-            <!--            <span class="d-inline h6 ml-1 text-logo">포츈코인</span>-->
-            <!--        </span>-->
-            <!--            </a>-->
             <a class="detailed" th:href="@{/}">
-                <img alt="" height="30" th:src="@{/assets/img/coin.png}"/>
-            <span class="ml-1 title" th:text="포츈코인"></span>
+                <img alt="" height="30" th:src="@{/static/assets/img/logo.png}"/>
             </a>
         </div>
-        <!--            <img src="assets/img/logo_white.png" alt="logo" class="brand" data-src="assets/img/logo_white.png"-->
-        <!--                 data-src-retina="assets/img/logo_white_2x.png" width="78" height="22">-->
-        <!-- END SIDEBAR MENU HEADER-->
-        <!-- START SIDEBAR MENU -->
         <div class="sidebar-menu">
-            <!-- BEGIN SIDEBAR MENU ITEMS-->
             <ul class="menu-items">
                 <li class="m-t-20 ">
-                    <a href="index.html" class="detailed">
-                        <span class="title">Dashboard</span>
-                        <span class="details">12 New Updates</span>
+                    <a th:href="@{/}" class="detailed">
+                        <span class="title">DashBoard</span>
                     </a>
-                    <span class="icon-thumbnail"><i class="pg-icon">home</i></span>
+                    <span class="icon-thumbnail"><i class="pg-icon mb-1">effects</i></span>
                 </li>
                 <li class="">
-                    <a href="email.html" class="detailed">
-                        <span class="title">Email</span>
-                        <span class="details">234 New Emails</span>
+                    <a th:href="@{/manage/board/list}" class="detailed">
+                        <span class="title">Community</span>
                     </a>
-                    <span class="icon-thumbnail"><i class="pg-icon">inbox</i></span>
-                </li>
-                <li class="">
-                    <a href="social.html"><span class="title">Social</span></a>
-                    <span class="icon-thumbnail"><i class="pg-icon">social</i></span>
-                </li>
-                <li>
-                    <a href="javascript:;"><span class="title">Calendar</span>
-                        <span class=" arrow"></span></a>
-                    <span class="icon-thumbnail"><i class="pg-icon">calendar</i></span>
-                    <ul class="sub-menu">
-                        <li class="">
-                            <a href="calendar.html">Basic</a>
-                            <span class="icon-thumbnail"><i class="pg-icon">c</i></span>
-                        </li>
-                        <li class="">
-                            <a href="calendar_lang.html">Languages</a>
-                            <span class="icon-thumbnail"><i class="pg-icon">l</i></span>
-                        </li>
-                        <li class="">
-                            <a href="calendar_month.html">Month</a>
-                            <span class="icon-thumbnail"><i class="pg-icon">m</i></span>
-                        </li>
-                        <li class="">
-                            <a href="calendar_lazy.html">Lazy load</a>
-                            <span class="icon-thumbnail"><i class="pg-icon">la</i></span>
-                        </li>
-                        <li class="">
-                            <a href="https://docs.pages.revox.io/apps/calendar" rel="noreferrer" target="_blank">Documentation</a>
-                            <span class="icon-thumbnail"><i class="pg-icon">d</i></span>
-                        </li>
-                    </ul>
+                    <span class="icon-thumbnail"><i class="pg-icon mb-1">inbox</i></span>
                 </li>
             </ul>
             <div class="clearfix"></div>
         </div>
-        <!-- END SIDEBAR MENU -->
     </nav>
 </th:block>
 </body>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head"></th:block>
+    <link th:href="@{/static/assets/libs/summernote/summernote-bs4.css}" rel="stylesheet">
+    <link th:href="@{/static/assets/libs/summernote/lang/summernote-ko-KR.js}" rel="stylesheet">
+</head>
+<body class="fixed-header dashboard menu-pin menu-behind">
+<th:block th:replace="fragments/menu :: left"></th:block>
+<div class="page-container">
+    <th:block th:replace="fragments/top-bar :: topbar"></th:block>
+    <div class="page-content-wrapper">
+        <div class="content sm-gutter">
+            <div class="container-fluid">
+                <div class="page-title align-items-center">
+                    <h4 class="mb-1 mt-2">Community</h4>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="d-flex justify-content-end mb-3">
+                                    <!--                      th:href="@{/manage/board/edit/{id}(id=${board.id})}"-->
+                                    <a class="btn btn-primary btn-lg mr-2" data-toggle="modal" href="#modifyModal">Modify</a>
+                                    <button class=" btn btn-info btn-lg" data-toggle="modal" href="#deleteModal">
+                                        delete
+                                    </button>
+                                </div>
+
+                                <table class="table table-striped dt-responsive nowrap"
+                                       style="background-color: white">
+                                    <tbody class="text-center">
+                                    <tr>
+                                        <th width="15%" class="vertical-center">name</th>
+                                        <td width="35%" th:text="${board.name}"></td>
+                                        <th width="15%" class="vertical-center">date</th>
+                                        <td width="35%"
+                                            th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="vertical-center">title</th>
+                                        <td class="text-left" th:text="${board.title}" colspan="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="vertical-center">content</th>
+                                        <td th:utext="${board.contents}" colspan="3" height="300"
+                                            class="align-text-top text-left"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center mt-2">
+                                    <a th:href="@{/manage/board/list}">Return to list</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" th:action="@{/manage/board/delete}">
+                <input type="hidden" name="id" th:value="*{id}"/>
+                <div class="modal fade slide-up disable-scroll" id="deleteModal" tabindex="-1" role="dialog"
+                     aria-labelledby="deleteModalTitle" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content-wrapper">
+                            <div class="modal-content">
+                                <div class="modal-header clearfix text-left">
+                                    <button aria-label="" type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true"><i class="pg-icon">close</i>
+                                    </button>
+                                    <h5><span class="semi-bold">Password Check</span></h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group-attached">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group form-group-default">
+                                                    <label>password</label>
+                                                    <input id="passwordConfirm" type="password" class="form-control">
+                                                </div>
+                                                <small class="text-danger" id="alert-danger">Passwords do not match.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                                    <button type="submit" id="confirm-btn" class="btn btn-primary">confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="modal fade slide-up disable-scroll" id="modifyModal" tabindex="-1" role="dialog"
+                 aria-labelledby="modifyModalTitle" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content-wrapper">
+                        <div class="modal-content">
+                            <div class="modal-header clearfix text-left">
+                                <button aria-label="" type="button" class="close" data-dismiss="modal"
+                                        aria-hidden="true"><i class="pg-icon">close</i>
+                                </button>
+                                <h5><span class="semi-bold">Password Check</span></h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group-attached">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-default">
+                                                <label>password</label>
+                                                <input id="modifyConfirm" type="password" class="form-control">
+                                            </div>
+                                            <small class="text-danger" id="modify-danger">Passwords do not match.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                                <a th:href="@{/manage/board/edit/{id}(id=${board.id})}" id="confirm-btn2"
+                                        class="btn btn-primary">confirm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/footer ::footer"></th:block>
+</div>
+</div>
+
+<th:block th:replace="fragments/common-script :: common-script"/>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $(function () {
+        $("#alert-danger").hide();
+        $("#modify-danger").hide();
+
+        $('#confirm-btn').click(function () {
+            var password = "[[${board.password}]]";
+            var passwordConfirm = $("#passwordConfirm").val();
+            if (password != passwordConfirm) {
+                $('#passwordConfirm').focus();
+                $("#alert-danger").show();
+                return false;
+            }
+        });
+        $('#confirm-btn2').click(function () {
+            var password = "[[${board.password}]]";
+            var passwordConfirm = $("#modifyConfirm").val();
+            if (password != passwordConfirm) {
+                $('#modifyConfirm').focus();
+                $("#modify-danger").show();
+                return false;
+            } else {
+            }
+        });
+    });
+    /*]]>*/
+</script>
+</body>
+</html>

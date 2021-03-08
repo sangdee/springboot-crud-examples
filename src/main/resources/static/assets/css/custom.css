@@ -1,0 +1,8 @@
+
+table thead.thead-center, table tbody.tbody-center {
+    text-align: center;
+}
+
+.vertical-center {
+    vertical-align: middle !important;
+}
