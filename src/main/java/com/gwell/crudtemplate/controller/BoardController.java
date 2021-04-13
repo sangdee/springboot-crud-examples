@@ -109,7 +109,7 @@ public class BoardController {
     @PostMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
         try {
-            boardService.updateRemovedById(id);
+            boardService.deleteById(id);
         } catch (DataIntegrityViolationException e) {
             return "redirect:/manage/board/list";
         }

@@ -41,7 +41,8 @@ public class BoardService {
     }
 
     @Transactional
-    public void updateRemovedById(Long id) {
-        boardRepository.updateRemovedById(id);
+    public void deleteById(Long id) {
+        boardRepository.deleteById(id);
     }
+
 }

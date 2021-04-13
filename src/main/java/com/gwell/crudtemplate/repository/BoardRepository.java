@@ -23,14 +23,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long>, CustomBoardRepository {
 
-
-    /**
-     * Receiving the id value and processing it removed
-     *
-     * @param id
-     */
-    @Modifying
-    @Query("UPDATE Board b SET  b.removed = true WHERE b.id IN(:id)")
-    void updateRemovedById(@Param("id") Long id);
-
 }
