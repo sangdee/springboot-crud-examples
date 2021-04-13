@@ -1,4 +1,4 @@
-### springboot-crud-examples 
+## springboot-crud-examples 
  Spring Boot CRUD examples is a simple crud example for a `board` entity using Spring Data JPA and Querydsl.
 ### The details
 This project is based on Spring Boot
@@ -9,13 +9,13 @@ This project is based on Spring Boot
     - mariaDB  
     - maven
     
-### Installation
+## Installation
 The project is created with Maven, so you just need to import it to your IDE and build the project to resolve the dependencies
  + If an error occurs for the Qclass
    See 
 <a href="https://stackoverflow.com/questions/45794079/query-dsl-q-type-classes-not-generated" target="_blank">here</a>
    
-### Database setting
+## Database setting
 Create a mariaDB database with the name `crud` and add the config to `/resources/application.properties`.
 
 Add your db info to the default settings :
@@ -27,5 +27,5 @@ spring.datasource.password=
 spring.jpa.database-platform=org.hibernate.dialect.MariaDB103Dialect
 ```
 
-### Usage
+## Usage
 Run the project through the IDE and head out to http://localhost:8080
