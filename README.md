@@ -1,6 +1,7 @@
 ## springboot-crud-examples 
  Spring Boot CRUD examples is a simple crud example for a `board` entity using Spring Data JPA and Querydsl.
-### The details
+ 
+## The details
 This project is based on Spring Boot
  - packages used
     - Spring Data JPA
